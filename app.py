@@ -3,8 +3,8 @@
 from dotenv import load_dotenv
 import os
 from typing import TypedDict, List
-from flask import Flask, request, jsonify  # 🚀 Added Flask
-from flask_cors import CORS               # 🚀 Added CORS
+from flask import Flask, request, jsonify  
+from flask_cors import CORS            
 
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
