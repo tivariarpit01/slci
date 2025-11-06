@@ -1,88 +1,203 @@
-/* --- Filename: style.css --- */
+/* --- Filename: style.css (Corrected & Enhanced) --- */
+
+/* 1. Import a modern font (Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #chat-container {
     width: 400px;
     height: 600px;
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 #chat-header {
-    background-color: #48ff00;
+    /* A more modern, professional green */
+    background-color: #10B981; /* Replaces #48ff00 */
     color: white;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600; /* Use font-weight from Inter */
     text-align: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    position: relative;
+    
+    
+}
+
+#refresh-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#refresh-btn:hover {
+    transform: translateY(-50%) rotate(180deg);
+    color: rgba(255, 255, 255, 1);
 }
 
 #chat-box {
     flex-grow: 1;
     overflow-y: auto;
     padding: 15px;
-    border-bottom: 1px solid #ddd;
+    scroll-behavior: smooth;
+    background-color: #f9fafa; /* Slightly different background for chat area */
 }
 
 .message {
     margin-bottom: 12px;
-    padding: 10px;
-    border-radius: 18px;
-    max-width: 80%;
-    line-height: 1.4;
+    /* Larger padding and border-radius */
+    padding: 12px 16px;
+    border-radius: 20px;
+    max-width: 85%;
+    line-height: 1.5;
+    word-wrap: break-word; /* Prevents overflow */
 }
 
 .user-message {
-    background-color: #00ff11;
+   
+    background-color: #10B981; /* Replaces #00ff11 */
     color: white;
     margin-left: auto;
-    border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px; 
 }
 
 .bot-message {
-    background-color: #e9e9eb;
+    background-color: #e6e9ed; /* Slightly darker than body bg for contrast */
     color: #333;
     margin-right: auto;
     border-bottom-left-radius: 4px;
 }
 
+.message#typing-indicator {
+    padding: 12px 16px;
+    font-style: italic;
+    color: #999;
+}
+
+#category-buttons {
+    padding: 10px 15px;
+    display: flex; /* Ensure it starts as flex */
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #ffffff; /* Make sure buttons have a clear background */
+}
+
+.category-btn {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    text-decoration: none;
+    color: #555;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.category-btn:hover {
+    background-color: #10B981;
+    border-color: #10B981;
+    color: #ffffff;
+}
+
 #input-area {
     display: flex;
-    padding: 15px;
+    align-items: center;
+    padding: 12px 15px;
+    border-top: 1px solid #f0f0f0;
+    background-color: #ffffff; /* Clear background for input area */
 }
 
 #user-input {
     flex-grow: 1;
-    border: 1px solid #ccc;
-    border-radius: 18px;
-    padding: 10px 15px;
+    border: none;
+    background-color: #f0f2f5;
+    border-radius: 20px; /* More rounded input field */
+    padding: 12px 15px;
     font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    /* Corrected: Adjust margin to prevent overlap with button */
+    margin-right: 10px; 
+}
+
+#user-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #10B98160;
+}
+
+#user-input::placeholder {
+    color: #999;
 }
 
 #send-btn {
-    background-color: #00ff37;
+    background-color: #10B981;
     color: white;
     border: none;
-    border-radius: 18px;
-    padding: 10px 15px;
-    margin-left: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: background-color 0.2s ease;
+    
+    /* Ensure no text content */
+    text-indent: -9999px; 
+    overflow: hidden;
+    position: relative; /* For the pseudo-element icon */
+}
+
+#send-btn::after {
+    /* FontAwesome-like icon, using a unicode character for simplicity */
+    content: '\27A4'; /* Unicode for a right arrow */
+    position: absolute;
+    color: white;
+    font-size: 18px; /* Adjust size of the arrow */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-indent: 0; /* Make sure the icon is visible */
 }
 
 #send-btn:hover {
-    background-color: green;
+    background-color: #0f9a71;
+}
+
+/* Typing indicator dots */
+.typing-indicator::after {
+    content: '...';
+    animation: blink-animation 1s infinite steps(1, start);
+}
+
+@keyframes blink-animation {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }

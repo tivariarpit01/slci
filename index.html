@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLCI Chatbot</title>
+    <title>SLCI Support Team</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="chat-container">
         <div id="chat-header">
-            SLCI AI Assistant
+            SLCI Support Team
+            <span id="refresh-btn" title="Start New Chat">&#x21bb;</span>
         </div>
         <div id="chat-box">
             </div>
+
+        <div id="category-buttons">
+            <a href="https://forms.gle/PbEgiuVKa1Z5nLyi7" target="_blank" class="category-btn">Book Appointment</a>
+            <a href="https://forms.gle/PbEgiuVKa1Z5nLyi7" target="_blank" class="category-btn">Schedule a Call</a>
+            
+            <button class="category-btn chat-btn">Contact Support</button>
+            <button class="category-btn chat-btn">Our Services</button>
+        </div>
+
         <div id="input-area">
             <input type="text" id="user-input" placeholder="Ask anything about SLCI...">
             <button id="send-btn">Send</button>

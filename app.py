@@ -89,10 +89,12 @@ def classify_intent_node(state: ChatState):
         state["intent"] = "industries"
     elif "experience" in intent:
         state["intent"] = "experience"
+    elif "experience" in intent:
+        state["policy"] = "policy"
     else:
         state["intent"] = "general_qa"
         
-    print(f"DEBUG: Intent classified as: {state['intent']}") # For debugging
+    # print(f"DEBUG: Intent classified as: {state['intent']}") # For debugging
     return state
 
 ### --- Quick Answer Nodes (EXISTING) --- ###
@@ -102,8 +104,7 @@ def handle_greeting_node(state: ChatState):
     return state
 
 def handle_services_node(state: ChatState):
-    reply = ("SLCI offers ESI & EPF compliance, Labour Law Compliances, HR Solutions, and Payroll. "
-             "Would you like details on a specific service?")
+    reply = ("SLCI offers ESI & EPF compliance, Labour Law Compliances, HR Solutions, and Payroll. ")
     state["messages"].append(AIMessage(content=reply))
     return state
 
@@ -150,6 +151,12 @@ def handle_industries_node(state: ChatState):
 
 def handle_experience_node(state: ChatState):
     reply = "We have over 38 years of experience in the field of law and compliance."
+    state["messages"].append(AIMessage(content=reply))
+    return state
+def handle_privicy_poilicy(state: ChatState):
+    reply = """Data We Collect: We collect personal and confidential information solely for the purpose of providing legal services and meeting professional obligations.
+    How We Use It: Your data is used exclusively for client representation, case management, billing, and communication related to our engagement.
+    Sharing & Security: We do not sell your information and protect it with reasonable security measures; data is only shared as required by law or with your explicit consent."""
     state["messages"].append(AIMessage(content=reply))
     return state
 
@@ -202,6 +209,7 @@ graph.add_node("motto", handle_motto_node)
 graph.add_node("staffing", handle_staffing_node)
 graph.add_node("industries", handle_industries_node)
 graph.add_node("experience", handle_experience_node)
+graph.add_node("policy", handle_privicy_poilicy)
 
 graph.set_entry_point("classify_intent")
 
@@ -220,7 +228,7 @@ graph.add_conditional_edges(
         "general_qa": "retrieve", "greeting": "greeting", "services": "services",
         "contact": "contact", "appointment": "appointment", "hours": "hours",
         "location": "location", "founder": "founder", "motto": "motto",
-        "staffing": "staffing", "industries": "industries", "experience": "experience"
+        "staffing": "staffing", "industries": "industries", "experience": "experience","policy":"policy"
     }
 )
 
